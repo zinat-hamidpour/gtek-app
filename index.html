@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTEK · ورود</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--paper:#EDEAE3;--ink:#1B1A19;--deck:#FAF8F4;--grey:#55524E}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--paper);overflow:hidden}
+body{font-family:Vazirmatn,system-ui,sans-serif;color:var(--ink)}
+#fit{position:fixed;left:50%;top:0;width:390px;transform-origin:top center}
+#stage{position:relative;width:390px;overflow:hidden;background:var(--paper)}
+.grain{position:absolute;inset:0;width:100%;height:100%;opacity:.26;pointer-events:none}
+.ly{position:absolute;left:0;bottom:0;will-change:transform;overflow:visible}
+#line{position:absolute;top:0;width:2px;margin-left:-1px;background:#1B1A19;box-shadow:0 0 0 .75px rgba(250,248,244,.75);transform-origin:top center;transform:scaleY(0)}
+#discW{position:absolute;width:68px;height:68px;margin:-34px 0 0 -34px;will-change:transform}
+#disc{width:68px;height:68px;border-radius:50%;background:#E8341C;will-change:transform}
+.ring{position:absolute;border-radius:50%;pointer-events:none;opacity:0}
+#ping{width:84px;height:84px;margin:-42px 0 0 -42px;border:1.5px dashed var(--deck)}
+#gap{position:absolute;width:27px;height:27px;margin:-13.5px 0 0 -13.5px;border-radius:50%;background:var(--paper);opacity:0}
+#logo{position:absolute;left:89px;width:212px;height:80.4px;direction:ltr}
+#logo svg{position:absolute;left:0;top:0;overflow:visible}
+#logo{clip-path:circle(0px at 74.1px 67.7px);will-change:clip-path}
+#rad{position:absolute;width:420px;height:420px;margin:-210px 0 0 -210px;pointer-events:none;overflow:visible}
+#rad circle{fill:none;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0}
+#blast{position:absolute;width:420px;height:420px;margin:-210px 0 0 -210px;pointer-events:none;overflow:visible}
+#blast circle{fill:none;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0}
+#tag{position:absolute;left:0;right:0;text-align:center;font-size:13.5px;color:var(--grey);opacity:0}
+#side{position:absolute;left:18px;top:26px;writing-mode:vertical-rl;direction:ltr;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.24em;color:var(--grey)}
+form{position:absolute;left:60px;width:270px;display:flex;flex-direction:column;gap:20px;opacity:0}
+label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--grey)}
+input{font:inherit;font-size:17px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:6px 0 8px;outline:none;direction:ltr;text-align:right}
+input:focus{border-bottom-width:2px;padding-bottom:7px}
+button.go{position:absolute;left:0;width:390px;height:64px;border:0;background:transparent;font:inherit;font-weight:600;font-size:19px;color:var(--ink);cursor:pointer;padding:0 60px;display:flex;align-items:center;justify-content:flex-end;gap:12px;opacity:0}
+button.go span{position:relative}
+button.go .seed{width:44px;height:44px;border-radius:50%;background:#D8261C;display:grid;place-items:center;transition:transform .15s}
+button.go:active .seed{transform:scale(.92)}
+button.go:focus-visible, #again:focus-visible{outline:2px solid var(--ink);outline-offset:-6px}
+#again{position:absolute;right:16px;top:18px;border:0;background:transparent;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--grey);padding:10px;cursor:pointer;opacity:0}
+#msg{min-height:18px;font-size:12px;color:var(--grey);text-align:center;margin-top:-10px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<filter id="ink" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  7 0 0 0 -4.62" result="m"/><feComposite in="SourceGraphic" in2="m" operator="out"/></filter>
+<filter id="pg" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="11"/><feColorMatrix type="matrix" values="0 0 0 0 0.25  0 0 0 0 0.23  0 0 0 0 0.2  5 0 0 0 -3"/></filter>
+<filter id="ink2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="9" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  7 0 0 0 -5.7" result="m"/><feComposite in="SourceGraphic" in2="m" operator="out"/></filter>
+<mask id="gm" maskUnits="userSpaceOnUse" x="-5" y="-5" width="115" height="110"><rect x="-5" y="-5" width="115" height="110" fill="#fff"/><polygon points="50,45 108,45 108,-6 91,-6" fill="#000"/><rect x="-3" y="32" width="41" height="4.6" fill="#000"/><rect x="-3" y="45.2" width="41" height="4.6" fill="#000"/><rect x="-3" y="58.4" width="41" height="4.6" fill="#000"/></mask>
+</defs></svg>
+<div id="fit"><div id="stage">
+<svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#pg)"/></svg>
+<div id="side">GOLGOHAR TECHNOLOGY ENGINEERING KNOWLEDGE</div>
+<svg class="ly" id="L1" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,422.3 L6.4,425.7 L13.8,419.7 L20.4,415.6 L27.3,415.0 L32.4,415.9 L38.7,421.9 L46.0,423.1 L52.9,426.0 L58.7,426.3 L66.0,426.2 L73.2,430.6 L79.1,429.1 L85.4,431.0 L91.9,433.5 L98.3,434.6 L105.5,438.6 L110.4,440.0 L115.1,438.3 L119.7,438.6 L125.4,441.3 L132.4,439.2 L139.1,437.2 L144.7,436.6 L150.7,434.9 L156.0,438.5 L161.8,441.9 L167.8,436.9 L174.6,435.1 L181.0,435.9 L186.5,433.4 L192.5,432.8 L199.8,426.4 L204.8,423.4 L210.2,420.3 L214.8,418.8 L222.0,417.8 L226.5,415.9 L232.7,415.7 L239.0,416.0 L244.6,417.5 L251.6,413.7 L256.4,414.7 L261.7,413.1 L267.9,411.5 L273.8,411.1 L280.3,413.7 L287.3,412.1 L292.5,411.7 L298.7,411.3 L304.1,412.0 L309.4,416.1 L315.9,415.3 L322.7,417.8 L328.7,421.2 L334.2,421.4 L341.0,422.9 L347.4,424.3 L354.8,418.8 L359.4,420.0 L364.3,418.1 L369.6,418.8 L375.2,419.1 L382.5,421.4 L388.8,420.5 L390.0,414.2 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,429.0 L6.4,428.8 L13.8,425.5 L20.4,420.9 L27.3,420.5 L32.4,421.5 L38.7,424.1 L46.0,427.3 L52.9,430.8 L58.7,431.0 L66.0,432.6 L73.2,436.2 L79.1,433.9 L85.4,435.2 L91.9,437.2 L98.3,438.3 L105.5,443.2 L110.4,443.1 L115.1,443.1 L119.7,443.0 L125.4,444.5 L132.4,441.8 L139.1,441.4 L144.7,440.3 L150.7,441.1 L156.0,443.1 L161.8,444.4 L167.8,442.4 L174.6,441.8 L181.0,438.4 L186.5,437.6 L192.5,435.0 L199.8,430.1 L204.8,425.6 L210.2,426.3 L214.8,420.8 L222.0,423.0 L226.5,421.9 L232.7,419.1 L239.0,420.9 L244.6,420.3 L251.6,417.1 L256.4,420.1 L261.7,417.9 L267.9,417.0 L273.8,416.1 L280.3,418.2 L287.3,419.0 L292.5,415.7 L298.7,415.3 L304.1,414.8 L309.4,419.2 L315.9,420.4 L322.7,424.4 L328.7,427.9 L334.2,424.9 L341.0,426.1 L347.4,427.9 L354.8,424.3 L359.4,423.1 L364.3,424.3 L369.6,423.0 L375.2,421.6 L382.5,424.0 L388.8,423.0 L390.0,420.6 L390,1500 L0,1500 Z" fill="#C6C2BA" filter="url(#ink)"/></svg><svg class="ly" id="L2" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,514.3 L4.6,515.2 L9.9,513.0 L17.1,513.1 L23.1,508.9 L30.6,513.0 L37.1,511.4 L43.5,507.6 L49.6,511.8 L55.4,510.4 L61.0,510.3 L68.4,512.7 L73.6,513.7 L79.4,514.3 L85.0,516.0 L90.9,520.4 L98.3,523.8 L104.6,522.9 L109.6,523.4 L114.9,517.3 L120.7,516.7 L127.3,513.0 L132.8,512.2 L138.0,511.4 L144.2,511.1 L150.8,514.6 L158.1,509.8 L163.8,508.5 L170.7,505.5 L175.6,505.6 L180.8,502.4 L187.5,506.6 L192.4,502.6 L197.7,501.2 L203.2,502.0 L208.2,504.1 L213.9,501.7 L221.3,501.7 L226.2,503.8 L230.7,502.4 L235.2,504.9 L241.7,502.9 L248.1,500.8 L254.9,501.6 L261.6,501.3 L267.7,503.2 L273.1,502.4 L280.5,500.1 L285.5,500.5 L292.9,502.8 L297.5,499.8 L304.2,502.0 L311.1,501.6 L317.0,501.3 L324.1,503.0 L330.4,502.6 L336.7,501.5 L342.0,504.3 L348.5,501.2 L355.7,503.5 L362.8,503.1 L368.0,502.0 L373.4,501.1 L379.3,505.5 L384.7,504.1 L389.3,499.0 L390.0,503.2 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,518.5 L4.6,518.7 L9.9,517.9 L17.1,517.0 L23.1,514.7 L30.6,516.3 L37.1,516.9 L43.5,514.4 L49.6,515.4 L55.4,515.6 L61.0,514.2 L68.4,516.7 L73.6,519.0 L79.4,519.2 L85.0,521.5 L90.9,524.9 L98.3,526.4 L104.6,526.8 L109.6,525.9 L114.9,521.1 L120.7,519.2 L127.3,515.1 L132.8,518.4 L138.0,516.1 L144.2,515.7 L150.8,518.1 L158.1,515.4 L163.8,512.7 L170.7,512.2 L175.6,509.5 L180.8,508.7 L187.5,508.6 L192.4,507.6 L197.7,506.4 L203.2,507.2 L208.2,506.6 L213.9,507.3 L221.3,508.6 L226.2,509.5 L230.7,507.0 L235.2,508.7 L241.7,508.4 L248.1,505.0 L254.9,508.4 L261.6,504.9 L267.7,507.7 L273.1,508.1 L280.5,506.9 L285.5,505.0 L292.9,508.1 L297.5,505.6 L304.2,508.1 L311.1,507.2 L317.0,506.8 L324.1,505.3 L330.4,505.7 L336.7,505.4 L342.0,506.3 L348.5,505.8 L355.7,506.2 L362.8,507.8 L368.0,507.8 L373.4,507.1 L379.3,508.7 L384.7,506.4 L389.3,505.9 L390.0,506.6 L390,1500 L0,1500 Z" fill="#8B8781" filter="url(#ink)"/></svg><svg class="ly" id="L3" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,593.5 L5.7,594.2 L13.2,601.1 L20.1,603.4 L26.5,598.3 L32.4,596.2 L38.9,594.9 L43.7,595.4 L48.9,590.6 L55.7,584.2 L62.4,580.7 L67.8,581.9 L72.9,581.4 L78.0,581.7 L84.5,578.9 L91.4,583.3 L98.6,584.8 L104.8,585.5 L111.3,579.8 L116.6,580.9 L122.2,585.1 L127.6,582.2 L134.8,579.3 L140.3,585.5 L147.7,581.5 L153.2,580.7 L159.9,585.0 L167.0,585.1 L173.6,582.8 L180.0,581.5 L185.7,581.8 L192.2,583.9 L198.6,583.9 L205.4,582.9 L211.5,582.8 L216.1,584.1 L222.6,583.0 L230.0,588.5 L234.6,588.7 L239.2,591.5 L246.6,597.8 L251.5,601.8 L258.5,596.7 L263.6,597.6 L268.6,594.2 L273.7,599.5 L279.0,596.4 L284.9,597.0 L290.3,599.5 L296.1,602.8 L301.3,605.0 L308.1,607.2 L312.7,606.3 L319.0,610.1 L324.0,606.8 L329.4,607.1 L336.9,609.3 L342.6,611.6 L348.2,607.1 L353.5,611.4 L360.2,608.9 L364.8,606.8 L370.5,605.9 L375.1,609.2 L381.1,605.7 L386.3,605.6 L390.0,601.8 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,600.5 L5.7,599.4 L13.2,605.1 L20.1,605.8 L26.5,605.0 L32.4,601.6 L38.9,599.6 L43.7,598.4 L48.9,595.2 L55.7,588.8 L62.4,586.5 L67.8,586.9 L72.9,586.8 L78.0,586.0 L84.5,584.9 L91.4,588.6 L98.6,587.6 L104.8,589.0 L111.3,585.5 L116.6,586.7 L122.2,588.5 L127.6,585.3 L134.8,585.5 L140.3,588.5 L147.7,587.8 L153.2,585.0 L159.9,587.8 L167.0,589.4 L173.6,586.2 L180.0,586.5 L185.7,586.6 L192.2,587.7 L198.6,589.1 L205.4,586.9 L211.5,586.1 L216.1,586.4 L222.6,587.8 L230.0,590.6 L234.6,594.1 L239.2,598.3 L246.6,600.9 L251.5,603.8 L258.5,603.6 L263.6,600.5 L268.6,599.9 L273.7,603.3 L279.0,601.6 L284.9,601.3 L290.3,604.1 L296.1,606.2 L301.3,607.4 L308.1,609.5 L312.7,609.6 L319.0,612.3 L324.0,613.4 L329.4,612.0 L336.9,614.8 L342.6,614.9 L348.2,612.3 L353.5,613.9 L360.2,612.6 L364.8,613.2 L370.5,612.8 L375.1,614.0 L381.1,610.5 L386.3,608.3 L390.0,607.2 L390,1500 L0,1500 Z" fill="#2B2A29" filter="url(#ink)"/></svg>
+<div id="logo" role="img" aria-label="G.TEK">
+<svg id="lg" viewBox="0 0 628.3 238.3" width="212" height="80.4"><path d="M160.0,90.3 L161.0,97.5 L162.3,98.8 L227.5,98.8 L228.8,97.5 L228.8,90.3 L227.5,89.0 L161.3,89.0 Z M154.3,73.7 L157.5,81.8 L159.2,82.8 L226.5,82.8 L227.8,81.5 L227.7,76.5 L226.5,73.5 L225.5,73.0 L155.3,73.0 Z M144.5,62.5 L148.2,66.5 L151.2,67.8 L223.5,67.8 L224.8,66.5 L224.0,63.2 L222.5,62.0 Z M124.7,0.0 L99.2,1.0 L74.5,6.2 L63.5,10.2 L53.2,15.3 L41.2,23.3 L27.3,36.2 L15.3,53.2 L8.2,68.5 L5.2,77.5 L1.0,96.2 L1.0,102.7 L0.0,105.2 L0.0,133.7 L1.0,136.2 L2.0,148.7 L8.2,170.3 L16.3,187.7 L24.3,199.7 L31.3,207.7 L47.2,220.5 L59.5,226.7 L67.5,229.7 L92.2,234.8 L105.7,234.8 L108.2,235.8 L128.7,234.8 L143.3,231.7 L157.3,226.7 L163.7,223.5 L172.7,217.5 L180.5,208.7 L181.8,205.7 L181.8,196.5 L184.0,187.3 L188.0,179.5 L193.7,172.8 L201.5,167.2 L209.2,164.0 L216.3,162.7 L228.3,163.5 L228.8,162.5 L228.8,109.2 L226.7,107.0 L130.5,107.3 L130.3,154.3 L161.5,154.8 L162.7,155.7 L161.8,159.3 L155.7,169.7 L148.7,175.7 L142.3,178.8 L128.7,182.0 L115.2,182.0 L103.5,179.8 L91.2,173.7 L86.2,168.7 L81.2,161.7 L77.0,152.3 L73.8,139.7 L73.8,135.2 L72.8,132.7 L72.8,105.2 L73.8,102.7 L74.8,93.2 L78.0,82.5 L84.2,71.2 L92.2,63.2 L100.5,59.0 L113.2,55.8 L216.5,55.8 L217.5,55.2 L214.5,48.2 L203.5,33.2 L190.7,21.3 L181.7,15.3 L171.3,10.2 L157.3,5.2 L137.7,1.0 L127.2,1.0 Z" fill="#1B1A19" fill-rule="evenodd" filter="url(#ink2)"/><path d="M447.3,56.5 L447.0,200.7 L446.0,203.2 L446.0,226.7 L447.0,229.2 L447.5,235.5 L498.7,235.8 L502.3,234.5 L502.8,182.2 L510.3,173.0 L512.8,171.3 L516.2,167.2 L518.3,166.2 L520.2,167.2 L524.7,173.2 L533.3,188.7 L536.7,192.5 L542.8,203.7 L546.7,208.5 L548.3,212.7 L550.5,215.0 L551.5,217.8 L554.7,221.5 L558.8,229.7 L561.3,233.3 L564.0,235.3 L626.5,235.8 L627.7,235.2 L628.3,233.2 L627.5,231.2 L619.7,220.7 L618.3,217.0 L611.2,207.3 L609.0,202.7 L606.2,199.3 L594.3,180.0 L591.7,177.2 L591.0,174.7 L585.3,166.8 L582.3,161.0 L577.3,154.8 L576.3,152.0 L564.7,135.2 L560.3,126.5 L568.3,116.0 L579.5,105.7 L580.2,104.2 L594.5,89.7 L596.3,86.0 L610.5,72.7 L613.3,68.0 L621.3,60.8 L623.0,58.5 L621.8,56.5 L559.2,56.0 L556.5,57.2 L548.5,66.0 L546.8,69.2 L535.5,81.0 L534.5,83.8 L529.5,88.0 L528.7,90.3 L523.2,95.7 L521.5,98.8 L516.5,103.0 L514.5,106.8 L510.3,110.2 L507.7,114.7 L503.5,117.7 L501.8,116.5 L501.5,57.5 L497.7,56.0 Z M298.0,56.5 L297.0,58.2 L297.0,232.7 L298.2,235.2 L299.3,235.8 L439.8,235.3 L441.8,232.7 L441.8,228.2 L440.8,225.7 L441.3,194.2 L440.3,192.3 L355.3,192.0 L353.8,190.5 L353.8,184.2 L352.8,181.7 L352.8,167.2 L354.0,164.7 L356.5,163.0 L427.3,162.5 L427.8,126.2 L427.2,123.7 L426.2,123.0 L355.2,123.0 L352.8,120.7 L352.8,101.2 L354.0,98.7 L355.3,97.8 L439.2,97.7 L441.8,94.7 L441.3,58.0 L438.7,56.0 Z M177.2,7.2 L177.5,9.2 L188.3,15.2 L200.7,25.2 L209.5,35.0 L218.7,49.7 L224.2,51.8 L231.5,51.8 L233.0,53.3 L233.0,163.5 L236.0,166.3 L239.7,167.7 L243.2,170.8 L244.8,171.3 L248.8,175.7 L255.8,188.5 L257.7,199.0 L257.0,208.7 L252.7,219.7 L249.8,224.2 L243.3,230.7 L238.5,233.5 L238.3,234.3 L239.0,235.2 L243.2,235.8 L289.0,235.7 L290.8,232.7 L290.8,53.3 L292.3,51.8 L297.7,51.8 L300.2,50.8 L305.3,51.8 L308.2,50.8 L315.7,50.8 L317.8,51.7 L320.2,50.8 L351.7,50.8 L353.2,49.8 L353.7,45.8 L350.7,34.5 L347.7,28.7 L339.8,18.5 L329.2,11.2 L316.7,7.0 Z" fill="#D8261C" fill-rule="evenodd" filter="url(#ink2)"/></svg>
+</div>
+<div id="tag">دانش شما، میراث سازمان است</div>
+<div id="gap"></div>
+<div id="line"></div>
+<div id="ping" class="ring"></div>
+<svg id="blast" viewBox="-210 -210 420 420" aria-hidden="true"><circle id="b1" r="20" stroke="#8F0504" stroke-width="1.1"/><circle id="b2" r="20" stroke="#8F0504" stroke-width="0.9" stroke-dasharray="2 6"/></svg>
+<div id="discW"><div id="disc"></div></div>
+<svg class="ly" id="L4" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,687.6 L4.5,686.8 L12.0,686.1 L16.7,684.7 L23.3,686.6 L30.0,680.9 L35.6,681.1 L40.7,677.1 L46.5,675.9 L53.0,669.0 L58.2,673.2 L63.6,673.9 L69.3,670.2 L74.7,673.5 L80.9,669.2 L85.6,673.4 L91.9,669.9 L96.7,675.2 L103.0,673.0 L107.6,672.5 L114.2,671.8 L119.6,672.2 L127.1,671.2 L132.0,669.9 L138.4,670.2 L145.5,670.4 L150.9,674.9 L156.9,674.0 L162.8,673.8 L169.3,670.7 L175.0,669.4 L181.3,675.6 L187.9,673.6 L193.8,668.5 L199.9,672.2 L206.6,672.8 L213.7,672.4 L219.1,670.6 L226.6,672.7 L232.5,672.2 L237.5,672.3 L243.7,676.3 L249.6,675.7 L256.5,671.2 L263.8,675.5 L270.9,672.4 L275.5,674.6 L282.1,672.9 L288.5,673.4 L294.4,668.2 L301.6,671.7 L308.0,672.4 L314.2,673.6 L318.8,673.4 L323.8,673.4 L330.2,672.4 L337.2,670.9 L344.1,672.4 L350.6,670.6 L356.8,669.0 L362.2,669.0 L368.9,668.9 L376.0,674.0 L382.8,670.5 L388.9,672.7 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,689.8 L4.5,692.1 L12.0,689.5 L16.7,687.6 L23.3,689.6 L30.0,684.9 L35.6,683.6 L40.7,680.3 L46.5,679.1 L53.0,675.4 L58.2,677.1 L63.6,676.3 L69.3,675.9 L74.7,677.0 L80.9,676.1 L85.6,675.8 L91.9,676.2 L96.7,677.5 L103.0,679.0 L107.6,676.9 L114.2,677.0 L119.6,678.6 L127.1,676.9 L132.0,675.7 L138.4,676.9 L145.5,677.2 L150.9,678.6 L156.9,677.1 L162.8,678.6 L169.3,676.4 L175.0,675.9 L181.3,678.8 L187.9,676.3 L193.8,675.3 L199.9,676.2 L206.6,676.2 L213.7,676.0 L219.1,675.9 L226.6,676.8 L232.5,675.9 L237.5,678.4 L243.7,678.5 L249.6,678.8 L256.5,678.0 L263.8,677.6 L270.9,677.1 L275.5,676.9 L282.1,678.2 L288.5,679.0 L294.4,675.0 L301.6,676.0 L308.0,678.1 L314.2,678.8 L318.8,679.1 L323.8,677.4 L330.2,676.8 L337.2,676.1 L344.1,677.6 L350.6,677.4 L356.8,675.8 L362.2,675.7 L368.9,675.1 L376.0,678.4 L382.8,676.2 L388.9,679.5 L390,1500 L0,1500 Z" fill="#5E5B57" filter="url(#ink)"/></svg><svg class="ly" id="L5" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,764.0 L7.3,765.8 L13.1,768.1 L19.5,768.6 L26.1,767.9 L33.1,764.9 L38.9,768.0 L45.9,773.1 L53.0,767.7 L57.8,763.4 L64.1,765.4 L71.4,765.0 L78.1,767.8 L85.5,765.7 L90.0,762.9 L95.8,758.1 L102.3,756.1 L109.2,758.1 L114.6,753.1 L121.7,753.3 L129.2,752.3 L135.8,750.2 L140.9,750.7 L148.2,753.0 L153.3,749.7 L159.2,752.1 L164.7,753.2 L170.1,756.0 L176.6,754.3 L181.4,756.0 L188.8,750.1 L195.7,750.0 L200.4,753.8 L207.7,753.3 L213.2,752.0 L220.5,754.8 L226.2,755.3 L232.7,752.7 L239.5,750.7 L244.5,753.7 L251.2,752.3 L256.9,752.8 L263.1,753.4 L270.3,753.9 L276.6,751.2 L281.1,753.3 L288.6,754.3 L293.6,757.3 L300.2,755.4 L305.4,757.7 L311.9,762.9 L316.6,762.5 L323.1,764.1 L329.4,764.9 L334.1,771.0 L341.0,769.5 L346.3,777.0 L351.2,782.1 L357.1,779.4 L363.9,776.7 L369.4,780.3 L374.9,778.1 L380.0,780.9 L387.1,778.9 L390.0,776.2 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,769.5 L7.3,772.3 L13.1,771.5 L19.5,772.6 L26.1,774.4 L33.1,771.9 L38.9,774.2 L45.9,775.4 L53.0,772.1 L57.8,770.3 L64.1,770.0 L71.4,769.5 L78.1,771.7 L85.5,770.0 L90.0,766.5 L95.8,763.9 L102.3,760.5 L109.2,760.8 L114.6,759.6 L121.7,756.5 L129.2,755.3 L135.8,755.2 L140.9,757.0 L148.2,755.4 L153.3,755.9 L159.2,757.3 L164.7,755.4 L170.1,759.1 L176.6,756.9 L181.4,758.1 L188.8,755.0 L195.7,754.9 L200.4,757.2 L207.7,756.9 L213.2,755.5 L220.5,756.9 L226.2,758.6 L232.7,757.8 L239.5,757.2 L244.5,757.7 L251.2,756.2 L256.9,757.4 L263.1,757.7 L270.3,757.5 L276.6,755.8 L281.1,759.2 L288.6,758.0 L293.6,761.5 L300.2,762.4 L305.4,763.9 L311.9,766.2 L316.6,768.8 L323.1,767.8 L329.4,771.1 L334.1,774.1 L341.0,774.6 L346.3,779.4 L351.2,784.9 L357.1,783.2 L363.9,781.9 L369.4,782.4 L374.9,781.8 L380.0,783.1 L387.1,782.6 L390.0,781.5 L390,1500 L0,1500 Z" fill="#141313" filter="url(#ink)"/></svg>
+<svg id="rad" viewBox="-210 -210 420 420" aria-hidden="true"><circle id="r0" r="20" style="fill:#FF3B1F"/><circle id="r1" r="20" stroke="#FF4A2E" stroke-width="3"/><circle id="r2" r="20" stroke="#FF4A2E" stroke-width="2.2" stroke-dasharray="12 6"/><circle id="r3" r="20" stroke="#FF4A2E" stroke-width="1.8" stroke-dasharray="4 7"/><circle id="r4" r="20" stroke="#FAF8F4" stroke-width="1.4" stroke-dasharray="2 8"/></svg>
+<form id="f" novalidate>
+<label>شمارهٔ همراه<input type="tel" inputmode="numeric" autocomplete="tel" placeholder="09…"></label>
+<label>رمز عبور<input type="password" autocomplete="current-password"></label>
+<div id="msg" role="status"></div>
+</form>
+<button class="go" id="go" type="submit" form="f"><span>ورود</span><span class="seed" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><path d="M14 9H4M8.5 4.5L4 9l4.5 4.5" fill="none" stroke="#FAF8F4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+<button id="again" type="button" aria-label="پخش دوبارهٔ موشن" hidden>REPLAY</button>
+</div></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var fit=$('fit'),stage=$('stage'),anims=[],H=844,DX=163.1,CY=67.7,RS=0.344,DR=11.7;
+var tops=[430,520,600,690,770], rest=[716,748,778,806,830];
+function layout(){
+  var s=Math.min(innerWidth/390, innerHeight/720, 1.3);
+  H=Math.round(innerHeight/s);
+  fit.style.transform='translateX(-50%) scale('+s+')';
+  stage.style.height=H+'px';
+  var lt=Math.max(104,Math.min(190,H*0.19));
+  $('logo').style.top=lt+'px';
+  $('tag').style.top=(lt+100)+'px';
+  $('f').style.top=(lt+146)+'px';
+  var bt=lt+322; $('go').style.top=(bt+12)+'px';
+  var yD=H-844+686, yT=lt+CY;
+  [['discW',yD],['rad',yD],['blast',yT]].forEach(function(a){var e=$(a[0]);e.style.left=DX+'px';e.style.top=a[1]+'px'});
+  var ln=$('line'); ln.style.left=DX+'px'; ln.style.height=(yD-34)+'px';
+  return {yD:yD,yT:yT,bt:bt};
+}
+function A(el,kf,o){o.fill=o.fill||'both';var a=el.animate(kf,o);anims.push(a);return a}
+function play(){
+  anims.forEach(function(a){a.cancel()}); anims=[];
+  var g=layout(), out='cubic-bezier(.16,1,.3,1)', johakyu='cubic-bezier(.7,0,.16,1)';
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  var io='cubic-bezier(.45,0,.25,1)';
+  // 1 — the plumb line comes down onto the visible cap of the pellet
+  var ln=$('line'), LH=g.yD-34, k2=(g.yT-DR)/LH;
+  A(ln,[{transform:'scaleY(0)'},{transform:'scaleY(1)'}],{delay:500,duration:1000,easing:'cubic-bezier(.5,0,.2,1)'});
+  // 2 — impact: the ground answers, red radiation spreads from the pellet
+  var I=1500;
+  for(var i=0;i<5;i++){
+    A($('L'+(i+1)),[{transform:'translateY(0)'},{transform:'translateY(-3px)',offset:.18},{transform:'translateY(2px)',offset:.45},{transform:'translateY(-1px)',offset:.7},{transform:'translateY(0)'}],{delay:I+i*35,duration:620,easing:'ease-out',fill:'none'});
+  }
+  [['r0',0,6.5,.3],['r0',900,5,.2],['r1',0,7.5,1],['r2',260,6.2,.85],['r3',540,5,.8],['r4',820,3.8,.7],['r1',1250,5.5,.6],['r3',1600,4.2,.5]].forEach(function(r){
+    A($(r[0]),[{opacity:0,transform:'scale(0)'},{opacity:r[3],offset:.12},{opacity:r[3]*.55,offset:.6},{opacity:0,transform:'scale('+r[2]+')'}],{delay:I+r[1],duration:1700,easing:'cubic-bezier(.2,.5,.3,1)',fill:'none'});
+  });
+  // 3 — one unbroken rise: the pellet shrinks and darkens all the way up
+  var T=I+250, D=2900, rise='cubic-bezier(.5,0,.25,1)';
+  A($('disc'),[{transform:'translateY(0) scale(1)',background:'#E8341C'},{transform:'translateY('+(g.yT-g.yD)+'px) scale('+RS+')',background:'#8F0504'}],{delay:T,duration:D,easing:rise});
+  A(ln,[{transform:'scaleY(1)'},{transform:'scaleY('+k2+')'}],{delay:T,duration:D,easing:rise,fill:'forwards'});
+  A(ln,[{transform:'scaleY('+k2+')'},{transform:'scaleY(0)'}],{delay:T+D+60,duration:420,easing:'ease-in',fill:'forwards'});
+  // 4 — three things at once: logo forms, layers come down to the button line, form fades in
+  var B=T+D-60, BD=2200, be='cubic-bezier(.3,.25,.3,1)';
+  A($('logo'),[{clipPath:'circle(0px at '+(DX-89)+'px '+CY+'px)'},{clipPath:'circle(162px at '+(DX-89)+'px '+CY+'px)'}],{delay:B,duration:BD,easing:be});
+  [['b1',0,8.1,.55],['b2',300,5.6,.45]].forEach(function(r){
+    A($(r[0]),[{opacity:0,transform:'scale(0)'},{opacity:r[3],offset:.1},{opacity:r[3]*.6,offset:.6},{opacity:0,transform:'scale('+r[2]+')'}],{delay:B+r[1],duration:BD,easing:be});
+  });
+  var restTop=[g.bt,g.bt+86,g.bt+130,g.bt+170,g.bt+208];
+  for(var j=0;j<5;j++){
+    var dy=Math.max(0,restTop[j]-(H-844+tops[j]));
+    A($('L'+(j+1)),[{transform:'translateY(0)'},{transform:'translateY('+dy+'px)'}],{delay:B+j*60,duration:BD-240,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'});
+  }
+  A($('tag'),[{opacity:0},{opacity:1}],{delay:B+500,duration:BD-700});
+  A($('f'),[{opacity:0},{opacity:1}],{delay:B+850,duration:BD-950,easing:'ease-in-out'});
+  A($('go'),[{opacity:0},{opacity:1}],{delay:B+BD-900,duration:800});
+  A($('again'),[{opacity:0},{opacity:1}],{delay:B+BD+300,duration:500});
+  if(reduce) anims.forEach(function(a){a.finish()});
+  var q=/[?&]t=(\d+)/.exec(location.search); if(q) anims.forEach(function(a){a.pause();a.currentTime=+q[1]});
+}
+function skip(){anims.forEach(function(a){if(a.playState!=='finished')a.finish()})}
+stage.addEventListener('pointerdown',function(e){if(!e.target.closest('form,#again,.go'))skip()});
+$('again').addEventListener('click',play);
+$('f').addEventListener('submit',function(e){e.preventDefault();
+  /* Skeleton: no real sign-in yet (SMS code comes with the real app). Go to the skills page. */
+  document.body.animate([{opacity:1},{opacity:0}],{duration:420,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'}).onfinish=function(){location.href='skills.html'};
+});
+var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();},150)});
+play();
+})();
+</script>
+</body>
+</html>

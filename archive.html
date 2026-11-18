@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B1A19">
+<title>GTEK · آرشیو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400&display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<main class="app">
+  <header class="page-header"><h1>آرشیو</h1></header>
+  <div class="empty"><p class="kicker">هنوز ساخته نشده</p>سخنرانی‌های سال‌های قبل و نمونه‌های خوب اینجا جمع می‌شوند.</div>
+</main>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/core.js"></script>
+<script>
+App.nav('archive');
+var r = document.getElementById('reset');
+if (r) r.addEventListener('click', function () { App.reset(); r.textContent = 'پاک شد'; });
+</script>
+</body>
+</html>

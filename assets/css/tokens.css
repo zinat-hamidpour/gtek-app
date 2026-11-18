@@ -1,0 +1,38 @@
+/* GTEK · رگه — tokens, generated from the design system tokens.json. Do not edit by hand. */
+:root{
+  --paper: #EDEAE3;
+  --paper-light: #FAF8F4;
+  --ink: #1B1A19;
+  --ink-muted: #55524E;
+  --button-face: #E2DED7;
+  --card: #F7F5F0;
+  --track: #DDD8CF;
+  --layer-1: #DAD6CE;
+  --layer-2: #A8A49D;
+  --layer-3: #8B8781;
+  --layer-4: #5E5B57;
+  --layer-5: #2B2A29;
+  --layer-6: #141313;
+  --dust: #C6C2BA;
+  --pellet: #D8261C;
+  --pellet-hot: #E8341C;
+  --pellet-deep: #8F0504;
+  --suit: #625850;
+  --suit-shade: #574E47;
+  --lamp-off: #3B3835;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 28px;
+  --space-6: 44px;
+  --radius-pill: 22px;
+  --radius-card: 18px;
+  --radius-plate: 28px;
+  --radius-disc: 50%;
+  --shadow-plate: inset 0 1px 0 rgba(250,248,244,0.14), inset 0 -1px 0 rgba(0,0,0,0.5), 0 2px 3px rgba(20,19,19,0.35), 0 16px 34px -8px rgba(20,19,19,0.6);
+  --shadow-key: inset 0 -1px 0 rgba(27,26,25,0.18), 0 2px 0 rgba(27,26,25,0.28);
+  --shadow-card: 0 1px 2px rgba(27,26,25,0.10), 0 8px 18px -12px rgba(27,26,25,0.45);
+  --shadow-card-active: 0 12px 24px -12px rgba(20,19,19,0.75);
+  --font-sans: "Readex Pro", Vazirmatn, system-ui, sans-serif;
+}

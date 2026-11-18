@@ -1,0 +1,154 @@
+/* GTEK · رگه — app components. Each block maps to a component of the design system. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: #D9D5CD;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button { font: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; color: inherit; }
+
+/* Phone frame: the app is 390 wide; on a desktop it sits centred */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--paper);
+  padding-bottom: 120px; /* room for the floating nav plate */
+  overflow-x: hidden;
+}
+
+/* ---------- PageHeader ---------- */
+.page-header { padding: 40px 28px 0 16px; height: 88px; display: flex; align-items: center; justify-content: space-between; }
+.page-header h1 { margin: 0; font-weight: 400; font-size: 21px; line-height: 1.4; padding-right: 12px; }
+.back { height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 6px; text-decoration: none; font-size: 13px; color: var(--ink-muted); }
+.back:hover { color: var(--ink); }
+.lead { padding: 4px 28px 0; display: flex; flex-direction: column; gap: 2px; }
+.kicker { font-size: 12.5px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+.sentence { margin: 0; font-size: 14.5px; line-height: 1.8; max-width: 310px; }
+.on-dark .page-header h1, .on-dark .sentence { color: var(--paper-light); }
+.on-dark .kicker { color: var(--layer-3); }
+
+/* ---------- CapsuleButton ---------- */
+.capsules { display: flex; justify-content: space-between; gap: 12px; }
+.capsule {
+  width: 138px; height: 44px; border-radius: var(--radius-pill);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 14px; text-decoration: none;
+}
+.capsule.primary { background: var(--button-face); color: var(--ink); font-weight: 400; box-shadow: var(--shadow-key); }
+.capsule.primary:active { transform: translateY(1px); box-shadow: inset 0 -1px 0 rgba(27,26,25,0.18); }
+.capsule.secondary { color: var(--ink); box-shadow: inset 0 0 0 1.2px var(--ink); }
+.on-dark .capsule.secondary { color: var(--paper-light); box-shadow: inset 0 0 0 1.2px rgba(250,248,244,0.55); }
+
+/* ---------- Section label ---------- */
+.section { padding: 0 28px; margin-top: 22px; }
+.section-head { height: 26px; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--ink-muted); margin-bottom: 10px; }
+
+/* ---------- Progress bar (shared by keys and cards) ---------- */
+.bar { position: relative; height: 3px; border-radius: 2px; background: var(--track); }
+.bar > i { position: absolute; right: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--ink); transition: width .6s cubic-bezier(.6,0,.2,1); }
+.bar .vein { position: absolute; left: -4px; top: -3.5px; width: 10px; height: 10px; border-radius: 50%; background: var(--pellet); }
+
+/* ---------- SkillKey (3 per row) ---------- */
+.keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.key {
+  height: 132px; padding: 14px 14px 16px; border-radius: var(--radius-card);
+  display: flex; flex-direction: column; justify-content: space-between;
+  text-decoration: none; background: var(--button-face); color: var(--ink);
+  box-shadow: inset 0 -2px 0 rgba(27,26,25,0.14), 0 3px 0 rgba(27,26,25,0.20), 0 12px 18px -12px rgba(27,26,25,0.55);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.key:active { transform: translateY(2px); box-shadow: inset 0 -1px 0 rgba(27,26,25,0.14), 0 1px 0 rgba(27,26,25,0.20); }
+.key .top { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--ink-muted); }
+.key .name { font-size: 18px; font-weight: 400; }
+.key .bottom { display: flex; flex-direction: column; gap: 12px; }
+.key.now { background: var(--ink); color: var(--paper-light); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.55), 0 3px 0 #0E0D0D, 0 14px 22px -12px rgba(20,19,19,0.8); }
+.key.now .top { color: #B9B3A9; }
+.key.now .bar { background: var(--lamp-off); }
+.key.now .bar > i { background: var(--paper-light); }
+
+/* ---------- LessonCard (one per row) ---------- */
+.cards { display: flex; flex-direction: column; gap: 10px; }
+.card {
+  min-height: 72px; padding: 12px 18px 12px 14px; border-radius: var(--radius-card);
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  background: var(--card); color: var(--ink); box-shadow: var(--shadow-card);
+}
+.card .body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.card .title { font-size: 16px; font-weight: 400; line-height: 1.5; }
+.card .meta { font-size: 12.5px; color: var(--ink-muted); }
+.card.now { background: var(--ink); color: var(--paper-light); box-shadow: var(--shadow-card-active); }
+.card.now .meta { color: #B9B3A9; }
+.arrow-disc { width: 38px; height: 38px; flex: none; border-radius: 50%; display: grid; place-items: center; border: 1.2px solid currentColor; }
+.card.now .arrow-disc { background: var(--paper-light); color: var(--ink); border-color: var(--paper-light); }
+.done-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--pellet); flex: none; }
+
+/* ---------- Stage hero (skills page) ---------- */
+.stage { position: relative; height: 420px; background: var(--ink); color: var(--paper-light); }
+.stage svg.scene { position: absolute; inset: 0; }
+.stage .page-header, .stage .lead { position: relative; }
+
+/* ---------- Designed poster (skill page top, played from design-src) ---------- */
+.poster { position: relative; height: 744px; overflow: hidden; }
+.screen-full { position: relative; height: 844px; overflow: hidden; }
+
+/* ---------- Illustration slot (skill page, until each picture is ported) ---------- */
+.illustration {
+  margin: 22px 28px 0; height: 300px; border-radius: var(--radius-card);
+  background: var(--layer-5); color: var(--layer-3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  font-size: 12.5px; text-align: center; padding: 20px;
+}
+.illustration strong { font-weight: 400; font-size: 17px; color: var(--paper-light); }
+.illustration .pellet { width: 18px; height: 18px; border-radius: 50%; background: var(--pellet); margin-bottom: 6px; }
+.skill-actions { padding: 18px 28px 0; }
+
+/* ---------- Lesson unit ---------- */
+.unit { padding: 0 28px; }
+.block { margin-top: 26px; }
+.block > .label { font-size: 12.5px; color: var(--ink-muted); margin-bottom: 6px; }
+.block p { margin: 0 0 10px; font-size: 15px; line-height: 1.95; }
+.block.hook p { font-size: 16.5px; line-height: 1.9; }
+.block.example { background: var(--card); border-radius: var(--radius-card); padding: 16px 18px; box-shadow: var(--shadow-card); }
+.block.exercise { background: var(--ink); color: var(--paper-light); border-radius: var(--radius-card); padding: 18px; }
+.block.exercise > .label { color: var(--layer-3); }
+.block.exercise .placeholder { color: #B9B3A9; }
+.block textarea {
+  width: 100%; min-height: 130px; margin-top: 8px; border: 0; border-radius: 12px; padding: 12px 14px;
+  font: inherit; font-size: 14.5px; line-height: 1.8; background: var(--paper-light); color: var(--ink); resize: vertical;
+}
+.block textarea:focus { outline: 2px solid var(--pellet); outline-offset: 2px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; line-height: 1.8; padding: 6px 0; }
+.check input { width: 18px; height: 18px; margin-top: 5px; accent-color: var(--ink); flex: none; }
+.placeholder { color: var(--ink-muted); }
+.lesson-end { padding: 30px 28px 0; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.lesson-end .capsule { width: 100%; }
+
+/* ---------- Simple page (tabs not built yet) ---------- */
+.empty { margin: 30px 28px 0; padding: 28px; border-radius: var(--radius-card); background: var(--card); box-shadow: var(--shadow-card); font-size: 14.5px; line-height: 1.9; }
+.empty .kicker { margin-bottom: 6px; }
+
+/* ---------- NavPlate ---------- */
+.nav {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  width: calc(min(100vw, 390px) - 28px); height: 80px; padding: 0 6px;
+  border-radius: var(--radius-plate);
+  background: linear-gradient(180deg, #2A2928 0%, var(--ink) 55%, #161514 100%);
+  box-shadow: var(--shadow-plate);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; z-index: 10;
+}
+.nav a { height: 68px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: var(--layer-3); font-size: 11.5px; font-weight: 300; }
+.nav a[aria-current="page"] { color: var(--paper-light); font-weight: 400; }
+.nav a[aria-current="page"] svg { color: var(--pellet-hot); }
+
+/* Page-in: quiet, mechanical */
+@keyframes pageIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.app > * { animation: pageIn .45s cubic-bezier(.6,0,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .app > * { animation: none; } }
