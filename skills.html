@@ -38,6 +38,15 @@ function lampToy(host) {
       p[0].style.opacity = '0.17'; p[1].style.fill = '#FAF8F4'; p[2].style.opacity = '0.2';
     }
   }
+  // First visit only: the next lamp blinks once, so the toy can be found.
+  try {
+    if (!localStorage.getItem('gtek.lampHint.v1')) {
+      var next = P.findIndex(function (v) { return v < 1; });
+      if (next >= 0) setTimeout(function () { set(next, true); setTimeout(function () { set(next, false); }, 450); }, 1400);
+      localStorage.setItem('gtek.lampHint.v1', '1');
+    }
+  } catch (err) {}
+
   var held = {};
   host.querySelectorAll('[data-lamp]').forEach(function (hit) {
     var k = hit.getAttribute('data-lamp');
