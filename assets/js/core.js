@@ -39,6 +39,9 @@
 
     reset: function () { P = { done: {}, notes: {} }; save(P); },
 
+    // Sign out on this phone: forget the remembered sign-in and go back to the login page.
+    signOut: function () { try { localStorage.removeItem('gtek.login.v1'); } catch (e) {} location.href = 'index.html'; },
+
     // How far a skill is: lessons done, total, state on | warm | off.
     skillState: function (id) {
       var s = D.skills[id], total = s.lessons.length, n = 0;
