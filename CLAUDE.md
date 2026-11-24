@@ -14,12 +14,21 @@ Speaker-training app for Gol Gohar's TED-style talk program (GTEK). Owner: Zinat
 
 ## Design rules (decided by Zinat — do not break)
 - Phone first: design at 390×844, must also work at 360×780 and 430×932. On a desktop the app sits centred at 390 wide.
-- One red (`--pellet` #D8261C) per frame: the pellet / red circle / done dot. Nav glyph uses `--pellet-hot`.
+- Red (`--pellet` #D8261C) is sparing and deliberate: the pellet / red circle / done dot. More than one red in a frame is fine when it helps the balance of the design. Nav glyph uses `--pellet-hot`.
 - No bold, no large text: largest is 21px/400. Font Readex Pro.
 - Torn paper only inside illustrations and signature moments, never to section the UI. UI sections = plain paper + 12.5px label + cards/keys.
 - Every tappable thing must look like a button (card/key with shadow + arrow).
 - Nothing is locked. Progress = lesson bars, lamps on the stage; no percentages.
 - No dotted/dashed lines, no glow, no blur shadows on illustrations, no emoji.
+
+## Approved screens
+- Final (do not change without asking Zinat): login `index.html`, skills page `design-src/Skills.dc.html` («صحنهٔ گرد»). Their own exceptions stand: bold «ورود» on login, skill keys without arrows.
+- Every other page is not approved yet; Zinat approves them one by one. Don't redesign them on your own.
+
+## Decisions to remember
+- Login fonts were unified to Readex Pro. Before that they were Vazirmatn 400/600 + IBM Plex Mono (side line, REPLAY): see `index.html` at commit `af6f3c7`. Zinat may want it back.
+- Login is phone + password. Once signed in, the phone remembers it (localStorage). Never store the password itself.
+- The event date lives in `data.js` (`event`). It changes often, so the countdown is computed from today and hidden for now (`showCountdown: false`).
 
 ## Working style
 - Before a change: say in one line what you will change. After: open the page at phone size, check it, then commit with a short message.
