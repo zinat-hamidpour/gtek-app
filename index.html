@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GTEK · ورود</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<script>/* Signed in once on this phone → straight to the app. Only the phone number is kept, never the password. */
+try{if(localStorage.getItem('gtek.login.v1'))location.replace('skills.html')}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600&display=swap">
 <style>
 :root{--paper:#EDEAE3;--ink:#1B1A19;--deck:#FAF8F4;--grey:#55524E}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:var(--paper);overflow:hidden}
-body{font-family:Vazirmatn,system-ui,sans-serif;color:var(--ink)}
+body{font-family:'Readex Pro',Vazirmatn,system-ui,sans-serif;color:var(--ink)}
 #fit{position:fixed;left:50%;top:0;width:390px;transform-origin:top center}
 #stage{position:relative;width:390px;overflow:hidden;background:var(--paper)}
 .grain{position:absolute;inset:0;width:100%;height:100%;opacity:.26;pointer-events:none}
@@ -28,7 +30,7 @@ body{font-family:Vazirmatn,system-ui,sans-serif;color:var(--ink)}
 #blast{position:absolute;width:420px;height:420px;margin:-210px 0 0 -210px;pointer-events:none;overflow:visible}
 #blast circle{fill:none;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0}
 #tag{position:absolute;left:0;right:0;text-align:center;font-size:13.5px;color:var(--grey);opacity:0}
-#side{position:absolute;left:18px;top:26px;writing-mode:vertical-rl;direction:ltr;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.24em;color:var(--grey)}
+#side{position:absolute;left:18px;top:26px;writing-mode:vertical-rl;direction:ltr;font-family:'Readex Pro',sans-serif;font-size:8.5px;letter-spacing:.24em;color:var(--grey)}
 form{position:absolute;left:60px;width:270px;display:flex;flex-direction:column;gap:20px;opacity:0}
 label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--grey)}
 input{font:inherit;font-size:17px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:6px 0 8px;outline:none;direction:ltr;text-align:right}
@@ -38,7 +40,7 @@ button.go span{position:relative}
 button.go .seed{width:44px;height:44px;border-radius:50%;background:#D8261C;display:grid;place-items:center;transition:transform .15s}
 button.go:active .seed{transform:scale(.92)}
 button.go:focus-visible, #again:focus-visible{outline:2px solid var(--ink);outline-offset:-6px}
-#again{position:absolute;right:16px;top:18px;border:0;background:transparent;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--grey);padding:10px;cursor:pointer;opacity:0}
+#again{position:absolute;right:16px;top:18px;border:0;background:transparent;font-family:'Readex Pro',sans-serif;font-size:11px;letter-spacing:.12em;color:var(--grey);padding:10px;cursor:pointer;opacity:0}
 #msg{min-height:18px;font-size:12px;color:var(--grey);text-align:center;margin-top:-10px}
 </style>
 </head>
@@ -65,8 +67,8 @@ button.go:focus-visible, #again:focus-visible{outline:2px solid var(--ink);outli
 <svg class="ly" id="L4" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,687.6 L4.5,686.8 L12.0,686.1 L16.7,684.7 L23.3,686.6 L30.0,680.9 L35.6,681.1 L40.7,677.1 L46.5,675.9 L53.0,669.0 L58.2,673.2 L63.6,673.9 L69.3,670.2 L74.7,673.5 L80.9,669.2 L85.6,673.4 L91.9,669.9 L96.7,675.2 L103.0,673.0 L107.6,672.5 L114.2,671.8 L119.6,672.2 L127.1,671.2 L132.0,669.9 L138.4,670.2 L145.5,670.4 L150.9,674.9 L156.9,674.0 L162.8,673.8 L169.3,670.7 L175.0,669.4 L181.3,675.6 L187.9,673.6 L193.8,668.5 L199.9,672.2 L206.6,672.8 L213.7,672.4 L219.1,670.6 L226.6,672.7 L232.5,672.2 L237.5,672.3 L243.7,676.3 L249.6,675.7 L256.5,671.2 L263.8,675.5 L270.9,672.4 L275.5,674.6 L282.1,672.9 L288.5,673.4 L294.4,668.2 L301.6,671.7 L308.0,672.4 L314.2,673.6 L318.8,673.4 L323.8,673.4 L330.2,672.4 L337.2,670.9 L344.1,672.4 L350.6,670.6 L356.8,669.0 L362.2,669.0 L368.9,668.9 L376.0,674.0 L382.8,670.5 L388.9,672.7 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,689.8 L4.5,692.1 L12.0,689.5 L16.7,687.6 L23.3,689.6 L30.0,684.9 L35.6,683.6 L40.7,680.3 L46.5,679.1 L53.0,675.4 L58.2,677.1 L63.6,676.3 L69.3,675.9 L74.7,677.0 L80.9,676.1 L85.6,675.8 L91.9,676.2 L96.7,677.5 L103.0,679.0 L107.6,676.9 L114.2,677.0 L119.6,678.6 L127.1,676.9 L132.0,675.7 L138.4,676.9 L145.5,677.2 L150.9,678.6 L156.9,677.1 L162.8,678.6 L169.3,676.4 L175.0,675.9 L181.3,678.8 L187.9,676.3 L193.8,675.3 L199.9,676.2 L206.6,676.2 L213.7,676.0 L219.1,675.9 L226.6,676.8 L232.5,675.9 L237.5,678.4 L243.7,678.5 L249.6,678.8 L256.5,678.0 L263.8,677.6 L270.9,677.1 L275.5,676.9 L282.1,678.2 L288.5,679.0 L294.4,675.0 L301.6,676.0 L308.0,678.1 L314.2,678.8 L318.8,679.1 L323.8,677.4 L330.2,676.8 L337.2,676.1 L344.1,677.6 L350.6,677.4 L356.8,675.8 L362.2,675.7 L368.9,675.1 L376.0,678.4 L382.8,676.2 L388.9,679.5 L390,1500 L0,1500 Z" fill="#5E5B57" filter="url(#ink)"/></svg><svg class="ly" id="L5" viewBox="0 0 390 844" width="390" height="844" aria-hidden="true"><path d="M0.0,764.0 L7.3,765.8 L13.1,768.1 L19.5,768.6 L26.1,767.9 L33.1,764.9 L38.9,768.0 L45.9,773.1 L53.0,767.7 L57.8,763.4 L64.1,765.4 L71.4,765.0 L78.1,767.8 L85.5,765.7 L90.0,762.9 L95.8,758.1 L102.3,756.1 L109.2,758.1 L114.6,753.1 L121.7,753.3 L129.2,752.3 L135.8,750.2 L140.9,750.7 L148.2,753.0 L153.3,749.7 L159.2,752.1 L164.7,753.2 L170.1,756.0 L176.6,754.3 L181.4,756.0 L188.8,750.1 L195.7,750.0 L200.4,753.8 L207.7,753.3 L213.2,752.0 L220.5,754.8 L226.2,755.3 L232.7,752.7 L239.5,750.7 L244.5,753.7 L251.2,752.3 L256.9,752.8 L263.1,753.4 L270.3,753.9 L276.6,751.2 L281.1,753.3 L288.6,754.3 L293.6,757.3 L300.2,755.4 L305.4,757.7 L311.9,762.9 L316.6,762.5 L323.1,764.1 L329.4,764.9 L334.1,771.0 L341.0,769.5 L346.3,777.0 L351.2,782.1 L357.1,779.4 L363.9,776.7 L369.4,780.3 L374.9,778.1 L380.0,780.9 L387.1,778.9 L390.0,776.2 L390,1500 L0,1500 Z" fill="#FAF8F4"/><path d="M0.0,769.5 L7.3,772.3 L13.1,771.5 L19.5,772.6 L26.1,774.4 L33.1,771.9 L38.9,774.2 L45.9,775.4 L53.0,772.1 L57.8,770.3 L64.1,770.0 L71.4,769.5 L78.1,771.7 L85.5,770.0 L90.0,766.5 L95.8,763.9 L102.3,760.5 L109.2,760.8 L114.6,759.6 L121.7,756.5 L129.2,755.3 L135.8,755.2 L140.9,757.0 L148.2,755.4 L153.3,755.9 L159.2,757.3 L164.7,755.4 L170.1,759.1 L176.6,756.9 L181.4,758.1 L188.8,755.0 L195.7,754.9 L200.4,757.2 L207.7,756.9 L213.2,755.5 L220.5,756.9 L226.2,758.6 L232.7,757.8 L239.5,757.2 L244.5,757.7 L251.2,756.2 L256.9,757.4 L263.1,757.7 L270.3,757.5 L276.6,755.8 L281.1,759.2 L288.6,758.0 L293.6,761.5 L300.2,762.4 L305.4,763.9 L311.9,766.2 L316.6,768.8 L323.1,767.8 L329.4,771.1 L334.1,774.1 L341.0,774.6 L346.3,779.4 L351.2,784.9 L357.1,783.2 L363.9,781.9 L369.4,782.4 L374.9,781.8 L380.0,783.1 L387.1,782.6 L390.0,781.5 L390,1500 L0,1500 Z" fill="#141313" filter="url(#ink)"/></svg>
 <svg id="rad" viewBox="-210 -210 420 420" aria-hidden="true"><circle id="r0" r="20" style="fill:#FF3B1F"/><circle id="r1" r="20" stroke="#FF4A2E" stroke-width="3"/><circle id="r2" r="20" stroke="#FF4A2E" stroke-width="2.2" stroke-dasharray="12 6"/><circle id="r3" r="20" stroke="#FF4A2E" stroke-width="1.8" stroke-dasharray="4 7"/><circle id="r4" r="20" stroke="#FAF8F4" stroke-width="1.4" stroke-dasharray="2 8"/></svg>
 <form id="f" novalidate>
-<label>شمارهٔ همراه<input type="tel" inputmode="numeric" autocomplete="tel" placeholder="09…"></label>
-<label>رمز عبور<input type="password" autocomplete="current-password"></label>
+<label>شمارهٔ همراه<input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="username" placeholder="09…"></label>
+<label>رمز عبور<input id="pass" name="password" type="password" autocomplete="current-password"></label>
 <div id="msg" role="status"></div>
 </form>
 <button class="go" id="go" type="submit" form="f"><span>ورود</span><span class="seed" aria-hidden="true"><svg viewBox="0 0 18 18" width="18" height="18"><path d="M14 9H4M8.5 4.5L4 9l4.5 4.5" fill="none" stroke="#FAF8F4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
@@ -137,7 +139,11 @@ function skip(){anims.forEach(function(a){if(a.playState!=='finished')a.finish()
 stage.addEventListener('pointerdown',function(e){if(!e.target.closest('form,#again,.go'))skip()});
 $('again').addEventListener('click',play);
 $('f').addEventListener('submit',function(e){e.preventDefault();
-  /* Skeleton: no real sign-in yet (SMS code comes with the real app). Go to the skills page. */
+  /* Skeleton: no server yet, so any phone + password is accepted. The phone remembers the sign-in
+     (the browser may also offer to save the password in the phone's keychain). */
+  var ph=$('phone').value.trim(), pw=$('pass').value;
+  if(!ph||!pw){$('msg').textContent='شمارهٔ همراه و رمز عبور را وارد کنید.';return}
+  try{localStorage.setItem('gtek.login.v1',JSON.stringify({phone:ph,at:Date.now()}))}catch(err){}
   document.body.animate([{opacity:1},{opacity:0}],{duration:420,easing:'cubic-bezier(.6,0,.2,1)',fill:'forwards'}).onfinish=function(){location.href='skills.html'};
 });
 var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){layout();},150)});

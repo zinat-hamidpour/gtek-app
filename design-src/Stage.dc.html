@@ -23,7 +23,7 @@ button{font:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer}
 <span style="font-size: 13px; color: #55524E">مهندس رحیمی</span>
 </div>
 <div style="display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.8; color: #55524E">
-<span>روز صحنه · ۲۴ بهمن ۱۴۰۵</span>
+<span>روز صحنه · {{eventDay}}</span>
 <span>ورود ۸:۳۰ · اجرای شما ۱۰:۴۰، ۱۸ دقیقه</span>
 </div>
 </div>
@@ -54,7 +54,7 @@ button{font:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer}
 </sc-if>
 <button type="button" style="margin-top: 8px; height: 44px; padding: 0 22px; border-radius: 22px; background: #FAF8F4; color: #1B1A19; font-size: 14px; font-weight: 400">{{action}}</button>
 </div>
-<p style="position: absolute; left: 28px; right: 28px; bottom: 116px; margin: 0; font-size: 12.5px; line-height: 1.8; color: #A8A49D">پرده‌ها ۴۸ ساعت پیش از رویداد قفل می‌شوند · ۱۲ روز مانده</p>
+<p style="position: absolute; left: 28px; right: 28px; bottom: 116px; margin: 0; font-size: 12.5px; line-height: 1.8; color: #A8A49D">پرده‌ها ۴۸ ساعت پیش از رویداد قفل می‌شوند{{countdown}}</p>
 </div>
 
 <svg width="390" height="844" aria-hidden="true" style="position: absolute; left: 0; top: 0; pointer-events: none; opacity: 0.22">
@@ -139,7 +139,13 @@ var lift = 'translateY(-8px)', rest = 'translateY(0)';
 var sh = 'drop-shadow(0 14px 12px rgba(20,19,19,0.32))', none = 'none';
 var pick = function (k) { return function () { self.setState({ sel: k }); }; };
 var i = info[sel];
+var ev = this.props.event || { date: '2027-02-13', showCountdown: true };
+var evDate = new Date(ev.date + 'T00:00:00'), today = new Date(); today.setHours(0, 0, 0, 0);
+var left = Math.round((evDate - today) / 86400000);
+var eventDay = new Intl.DateTimeFormat('fa-IR-u-ca-persian', { day: 'numeric', month: 'long', year: 'numeric' }).format(evDate);
+var countdown = ev.showCountdown && left >= 0 ? ' · ' + (left === 0 ? 'امروز' : left.toLocaleString('fa-IR') + ' روز مانده') : '';
 return {
+eventDay: eventDay, countdown: countdown,
 spec: i.spec, status: i.status, note: i.note, hasNote: !!i.note, action: i.action,
 tfR: sel === 'r' ? lift : rest, tfC: sel === 'c' ? lift : rest, tfL: sel === 'l' ? lift : rest,
 shR: sel === 'r' ? sh : none, shC: sel === 'c' ? sh : none, shL: sel === 'l' ? sh : none,

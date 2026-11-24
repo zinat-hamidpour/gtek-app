@@ -20,8 +20,7 @@
   }).join('');
 
   var lessonList =
-    '<section class="section" id="lessons" aria-label="درس‌ها"><div class="section-head"><span>درس‌ها</span><span>' +
-    App.fa(st.done) + ' از ' + App.fa(st.total) + '</span></div><div class="cards">' + lessons + '</div></section>';
+    '<section class="section" id="lessons" aria-label="درس‌ها"><div class="section-head"><span>درس‌ها</span></div><div class="cards">' + lessons + '</div></section>';
   var nextHref = 'lesson.html?s=' + id + '&l=' + next;
   var page = document.getElementById('page');
 

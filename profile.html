@@ -13,7 +13,10 @@
 <body>
 <main class="app"><div class="screen-full" id="screen"></div>
   <div class="section"><div class="section-head"><span>نمونهٔ آزمایشی</span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
     <button class="capsule secondary" id="reset" type="button" style="width:auto;padding:0 20px">پاک کردن پیشرفت آزمایشی</button>
+    <button class="capsule secondary" id="signout" type="button" style="width:auto;padding:0 20px">خروج از حساب</button>
+    </div>
   </div></main>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/core.js"></script>
@@ -23,6 +26,7 @@ App.loadScreen('Intro', function (sc) { mountScreen(sc, document.getElementById(
 App.nav('profile');
 var r = document.getElementById('reset');
 if (r) r.addEventListener('click', function () { App.reset(); r.textContent = 'پاک شد'; });
+document.getElementById('signout').addEventListener('click', App.signOut);
 </script>
 </body>
 </html>
