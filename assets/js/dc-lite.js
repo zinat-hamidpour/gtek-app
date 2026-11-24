@@ -71,14 +71,15 @@
     Array.prototype.forEach.call(node.childNodes, function (c) { walk(c, scope, out); });
   }
 
-  // screen = { css, html, logic: function () { return Component; } }
-  window.mountScreen = function (screen, host, after) {
+  // screen = { css, html, logic: function () { return Component; } }; props = the screen's inputs (optional)
+  window.mountScreen = function (screen, host, after, props) {
     if (screen.css && !document.getElementById('css-' + screen.name)) {
       var st = document.createElement('style'); st.id = 'css-' + screen.name; st.textContent = screen.css;
       document.head.appendChild(st);
     }
     var tpl = new DOMParser().parseFromString('<body>' + screen.html + '</body>', 'text/html').body;
     var Comp = screen.logic(), c = new Comp();
+    c.props = props || {};
     c._render = function () {
       var frag = document.createDocumentFragment();
       kids(tpl, c.renderVals ? c.renderVals() : {}, frag);
