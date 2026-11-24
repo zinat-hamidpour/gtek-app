@@ -28,7 +28,7 @@ Speaker-training app for Gol Gohar's TED-style talk program (GTEK). Owner: Zinat
 ## Decisions to remember
 - Login fonts were unified to Readex Pro. Before that they were Vazirmatn 400/600 + IBM Plex Mono (side line, REPLAY): see `index.html` at commit `af6f3c7`. Zinat may want it back.
 - Login is phone + password. Once signed in, the phone remembers it (localStorage). Never store the password itself.
-- Skills page (approved changes, 2026-11-24): the next lamp is warm (faint beam); a ghost light stands on the empty stage until the first lamp lights; carpet starts at a muted red; touching a lamp lights it only while held (a toy, never changes progress); on the first visit the next lamp blinks once.
+- Skills page (approved changes, 2026-11-24): the next lamp is warm (faint beam); a soft pool of light (its lamp off-stage, not drawn) lies on the empty stage until the first lamp lights; carpet starts at a muted red; touching a lamp lights it only while held (a toy, never changes progress); each time the app is opened (once per session) the six lamps light and go out in turn, a light dance.
 - The event date lives in `data.js` (`event`). It changes often, so the countdown is computed from today and hidden for now (`showCountdown: false`).
 
 ## Working style

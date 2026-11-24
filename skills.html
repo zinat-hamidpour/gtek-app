@@ -38,15 +38,6 @@ function lampToy(host) {
       p[0].style.opacity = '0.17'; p[1].style.fill = '#FAF8F4'; p[2].style.opacity = '0.2';
     }
   }
-  // First visit only: the next lamp blinks once, so the toy can be found.
-  try {
-    if (!localStorage.getItem('gtek.lampHint.v1')) {
-      var next = P.findIndex(function (v) { return v < 1; });
-      if (next >= 0) setTimeout(function () { set(next, true); setTimeout(function () { set(next, false); }, 450); }, 1400);
-      localStorage.setItem('gtek.lampHint.v1', '1');
-    }
-  } catch (err) {}
-
   var held = {};
   host.querySelectorAll('[data-lamp]').forEach(function (hit) {
     var k = hit.getAttribute('data-lamp');
@@ -67,6 +58,23 @@ function lampToy(host) {
     hit.addEventListener('lostpointercapture', off);
     hit.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   });
+
+  // Light dance: once each time the app is opened, the six lamps light and go out in turn,
+  // starting from «ایده». A lamp a finger is holding is left alone.
+  function isHeld(k) { for (var id in held) if (held[id] === String(k)) return true; return false; }
+  try {
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!calm && !sessionStorage.getItem('gtek.lampDance.v1')) {
+      sessionStorage.setItem('gtek.lampDance.v1', '1');
+      [0, 1, 2, 3, 4, 5].forEach(function (k) {
+        setTimeout(function () {
+          if (isHeld(k)) return;
+          set(k, true);
+          setTimeout(function () { if (!isHeld(k)) set(k, false); }, 420);
+        }, 700 + k * 180);
+      });
+    }
+  } catch (err) {}
 }
 App.nav('skills');
 </script>
