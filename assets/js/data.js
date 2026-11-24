@@ -15,6 +15,10 @@
  * `screen` names the designed poster for a skill (design-src/<screen>.dc.html).
  */
 window.GTEK = {
+  // The GTEK event. The date changes often: set it here only (YYYY-MM-DD).
+  // showCountdown: show «… روز مانده» on the stage tab, computed from today. Hidden for now.
+  event: { date: '2027-02-13', showCountdown: false },
+
   speaker: { name: '[نام سخنران]' },
 
   // Order of the six lamps on stage (right → left) and of the keys.

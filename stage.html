@@ -16,7 +16,7 @@
 <script src="assets/js/core.js"></script>
 <script src="assets/js/dc-lite.js"></script>
 <script>
-App.loadScreen('Stage', function (sc) { mountScreen(sc, document.getElementById('screen')); });
+App.loadScreen('Stage', function (sc) { mountScreen(sc, document.getElementById('screen'), null, { event: App.data.event }); });
 App.nav('stage');
 var r = document.getElementById('reset');
 if (r) r.addEventListener('click', function () { App.reset(); r.textContent = 'پاک شد'; });
