@@ -11,14 +11,54 @@
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body>
-<main class="app full dark"><div class="screen-full" id="screen"></div></main>
+<main class="app full dark" style="-webkit-touch-callout: none; -webkit-user-select: none; user-select: none"><div class="screen-full" id="screen"></div></main>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/dc-lite.js"></script>
 <script>
 /* Skills page «صحنهٔ گرد» (design-src/Skills.dc.html). P = each skill's share of finished lessons, 0–1. */
 var P = App.order().map(function (id) { var st = App.skillState(id); return st.done / st.total; });
-App.loadScreen('Skills', function (sc) { mountScreen(sc, document.getElementById('screen'), null, { P: P }); });
+App.loadScreen('Skills', function (sc) { mountScreen(sc, document.getElementById('screen'), lampToy, { P: P }); });
+
+/* A toy: touching a lamp lights it, lifting the finger puts it out. Progress is not changed.
+   Several fingers can hold several lamps at once. */
+function lampToy(host) {
+  function parts(k) {
+    return ['beam', 'face', 'petal'].map(function (n) { return host.querySelector('[data-' + n + '="' + k + '"]'); });
+  }
+  // On: light this lamp quickly. Off: return each part to the look the progress gives it, with a soft fade.
+  function set(k, on) {
+    parts(k).forEach(function (el) {
+      if (el.dataset.rest === undefined) el.dataset.rest = el.getAttribute('style');
+      el.setAttribute('style', el.dataset.rest);
+      el.style.transition = on ? 'opacity .18s ease, fill .18s ease' : 'opacity .5s ease, fill .5s ease';
+    });
+    if (on) {
+      var p = parts(k);
+      p[0].style.opacity = '0.17'; p[1].style.fill = '#FAF8F4'; p[2].style.opacity = '0.2';
+    }
+  }
+  var held = {};
+  host.querySelectorAll('[data-lamp]').forEach(function (hit) {
+    var k = hit.getAttribute('data-lamp');
+    hit.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      try { hit.setPointerCapture(e.pointerId); } catch (err) {}
+      held[e.pointerId] = k; set(k, true);
+      try { if (navigator.vibrate) navigator.vibrate(8); } catch (err) {}
+    });
+    function off(e) {
+      if (held[e.pointerId] === undefined) return;
+      var kk = held[e.pointerId]; delete held[e.pointerId];
+      for (var id in held) if (held[id] === kk) return; // another finger still holds it
+      set(kk, false);
+    }
+    hit.addEventListener('pointerup', off);
+    hit.addEventListener('pointercancel', off);
+    hit.addEventListener('lostpointercapture', off);
+    hit.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  });
+}
 App.nav('skills');
 </script>
 </body>
