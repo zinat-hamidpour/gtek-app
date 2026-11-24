@@ -62,7 +62,7 @@ button { font: inherit; background: none; border: 0; padding: 0; margin: 0; curs
 /* ---------- SkillKey (3 per row) ---------- */
 .keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .key {
-  height: 132px; padding: 14px 14px 16px; border-radius: var(--radius-card);
+  height: 92px; padding: 12px 14px 14px; border-radius: var(--radius-card);
   display: flex; flex-direction: column; justify-content: space-between;
   text-decoration: none; background: var(--button-face); color: var(--ink);
   box-shadow: inset 0 -2px 0 rgba(27,26,25,0.14), 0 3px 0 rgba(27,26,25,0.20), 0 12px 18px -12px rgba(27,26,25,0.55);
@@ -71,7 +71,7 @@ button { font: inherit; background: none; border: 0; padding: 0; margin: 0; curs
 .key:active { transform: translateY(2px); box-shadow: inset 0 -1px 0 rgba(27,26,25,0.14), 0 1px 0 rgba(27,26,25,0.20); }
 .key .top { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--ink-muted); }
 .key .name { font-size: 18px; font-weight: 400; }
-.key .bottom { display: flex; flex-direction: column; gap: 12px; }
+.key .bottom { display: flex; flex-direction: column; gap: 8px; }
 .key.now { background: var(--ink); color: var(--paper-light); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.55), 0 3px 0 #0E0D0D, 0 14px 22px -12px rgba(20,19,19,0.8); }
 .key.now .top { color: #B9B3A9; }
 .key.now .bar { background: var(--lamp-off); }
@@ -94,8 +94,15 @@ button { font: inherit; background: none; border: 0; padding: 0; margin: 0; curs
 .done-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--pellet); flex: none; }
 
 /* ---------- Stage hero (skills page) ---------- */
-.stage { position: relative; height: 420px; background: var(--ink); color: var(--paper-light); }
-.stage svg.scene { position: absolute; inset: 0; }
+.stage { position: relative; height: 420px; overflow: hidden; background: #1B1A19; color: var(--paper-light); }
+.stage svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* Skills page fits one phone screen: keys keep their size, the stage takes what is left,
+ * and nothing sits under the nav plate (18 + 80 + 14 px). */
+.app.one-screen { display: flex; flex-direction: column; padding-bottom: 112px; }
+.one-screen .stage { flex: 1 1 0; height: auto; min-height: 300px; }
+.one-screen .section { margin-top: 16px; }
+.one-screen .section-head { margin-bottom: 8px; }
 .stage .page-header, .stage .lead { position: relative; }
 
 /* ---------- Designed poster (skill page top, played from design-src) ----------
