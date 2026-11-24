@@ -32,9 +32,8 @@
   // ---- Keys
   var current = App.currentSkill();
   document.getElementById('groups').innerHTML = D.groups.map(function (g) {
-    var doneCount = g.skills.filter(function (id) { return App.skillState(id).state === 'on'; }).length;
     return '<section class="section" aria-label="' + App.esc(g.title) + '">' +
-      '<div class="section-head"><span>' + App.esc(g.title) + '</span><span>' + w[doneCount] + ' از ' + w[g.skills.length] + '</span></div>' +
+      '<div class="section-head"><span>' + App.esc(g.title) + '</span></div>' +
       '<div class="keys">' + g.skills.map(function (id) {
         var s = D.skills[id], st = App.skillState(id), now = id === current;
         var meta = st.state === 'on' ? 'کامل'
