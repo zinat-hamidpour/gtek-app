@@ -53,8 +53,9 @@ window.GTEK = {
 
     frame: {
       name: 'قاب',
-      motif: 'سه صفحهٔ صحنه',
-      sentence: '[جملهٔ عملی مهارت قاب]',
+      motif: 'صحنه در مانیتور',
+      sentence: 'پیش از آنکه کلمه‌ای خوانده شود، تصویر حرفش را زده است.',
+      screen: 'Frame',            // design-src/Frame.dc.html
       lessons: placeholderLessons(3)
     },
 
