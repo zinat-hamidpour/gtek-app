@@ -115,4 +115,17 @@
   };
 
   window.App = api;
+
+  // Phone fit: designed screens are 390×844. They follow the phone's width (--s),
+  // and full screens grow in height with plain paper/ground, never by stretching the picture.
+  function fit() {
+    var app = document.querySelector('.app');
+    var w = app ? app.clientWidth : Math.min(innerWidth, 390);
+    var s = w / 390, r = document.documentElement.style;
+    r.setProperty('--s', s.toFixed(4));
+    r.setProperty('--fill-h', (innerHeight / s).toFixed(1) + 'px');
+  }
+  fit();
+  addEventListener('resize', fit);
+  addEventListener('DOMContentLoaded', fit);
 })();
